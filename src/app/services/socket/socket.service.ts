@@ -20,5 +20,4 @@ export class WebSocketService {
     this.socket.on('message', callback);
   }
 
-  // Add more methods as needed
 }

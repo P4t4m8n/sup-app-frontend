@@ -1,0 +1,8 @@
+<form (ngSubmit)="onLogin()">
+    <label>User Name:</label>
+    <input [(ngModel)]="user.username" name="username" placeholder="Enter Username">
+    <h3>Password:</h3>
+    <input [(ngModel)]="user.password" name="password" type="password" placeholder="Enter Password"
+        autocomplete="current-password">
+    <button type="submit">Login</button>
+</form>

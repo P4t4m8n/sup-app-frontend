@@ -1,0 +1,5 @@
+<section modal (clickOutside)="onBack()">
+    <app-login (login)="login($event)" [user]="user" *ngIf="isLogin"></app-login>
+    <app-signup *ngIf="!isLogin" (signup)="signup($event)" [user]="user"></app-signup>
+    <button (click)="toggleLogin()">Toggle</button>
+</section>

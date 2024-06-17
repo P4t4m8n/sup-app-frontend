@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {  signal } from '@angular/core';
-import { WebSocketService } from '../../services/socket.service';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { signal } from '@angular/core';
+import { WebSocketService } from '../../services/socket/socket.service';
 
 @Component({
   selector: 'app-chat',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatComponent implements OnInit {
   message: string = '';
