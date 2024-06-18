@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import {  map } from 'rxjs/operators';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
@@ -15,7 +15,6 @@ export const authGuard: CanActivateFn = (route, state) => {
       .pipe(
         map(() => {
           const isLoggedIn = authService.user_();
-          console.log("isLoggedIn:", isLoggedIn)
           if (!isLoggedIn) {
             router.navigate(['/login']);
             observer.next(false);

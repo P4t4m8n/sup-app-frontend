@@ -10,7 +10,6 @@ import { LoginIndexComponent } from './components/login-index/login-index.compon
 import { ModelDirective } from './directives/model.directive';
 import { ChatComponent } from './components/chat/chat-screen/chat.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { LoggingService } from './services/logger/logger.service';
 import { ChatPreviewComponent } from './components/chat/chat-preview/chat-preview.component';
 import { ChatListComponent } from './components/chat/chat-list/chat-list.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -21,6 +20,9 @@ import { AvatarSVG } from './components/svgs/avatar/avatar.component';
 import { ChatSVG } from './components/svgs/chat/chat.component';
 import { HamburgerSVG } from './components/svgs/hamburger/hamburger.component';
 import { SettingsSVG } from './components/svgs/settings/settings.component';
+import { ChatFilterComponent } from './components/chat/chat-filter/chat-filter.component';
+import { NewMsgSVG } from './components/svgs/new-msg/new-msg.component';
+import { FilterSVG } from './components/svgs/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { SettingsSVG } from './components/svgs/settings/settings.component';
     NavComponent,
     ChatListHeaderComponent,
     CustomDatePipe,
+    ChatFilterComponent,
   ],
 
   imports: [
@@ -48,6 +51,8 @@ import { SettingsSVG } from './components/svgs/settings/settings.component';
     ChatSVG,
     HamburgerSVG,
     SettingsSVG,
+    NewMsgSVG,
+    FilterSVG,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

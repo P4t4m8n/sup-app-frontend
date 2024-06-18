@@ -1,0 +1,25 @@
+:host {
+  display: grid;
+  gap: 1rem;
+  .info {
+    display: flex;
+    justify-content: space-between;
+    h1 {
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+    .actions {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: rgb(77, 77, 77);
+    border-bottom: 1px solid white;
+    border-radius: 0.2rem;
+    color: white;
+  }
+}

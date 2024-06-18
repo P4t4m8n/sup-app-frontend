@@ -12,7 +12,6 @@ export class WebSocketService {
   }
 
   sendMessage(message: string) {
-    console.log("message:", message)
     this.socket.emit('message', message);
   }
 

@@ -12,6 +12,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ChatModel } from '../../../interface/chat';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, map } from 'rxjs';
+import { UserModel } from '../../../interface/user';
 
 @Component({
   selector: 'app-chat',
@@ -24,6 +25,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   messages = signal<String[]>([]);
 
   @Input() chat: ChatModel | null = null;
+  @Input() user: UserModel | null = null;
 
   private webSocketService = inject(WebSocketService);
   destroySubjects$ = new Subject<void>();
@@ -31,7 +33,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('********************************************');
+    console.log('chat:', this.chat);
     this.webSocketService.onMessage((message: string) => {
       this.messages.update((messages) => [...messages, message]);
     });

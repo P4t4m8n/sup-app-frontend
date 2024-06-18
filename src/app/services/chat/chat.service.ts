@@ -16,10 +16,8 @@ export class ChatService {
   constructor() {}
 
   query(userId: string) {
-    console.log("userId:", userId)
     return from(this.http.get<ChatModel[]>(`${this.apiUrl}/${userId}`)).pipe(
       tap((chats) => {
-        console.log('chats:', chats);
         this.chats_.set(chats);
       }),
       retry(1),
@@ -28,7 +26,6 @@ export class ChatService {
   }
 
   private _handleError(err: HttpErrorResponse) {
-    console.log('err:', err);
     return throwError(() => err);
   }
 }

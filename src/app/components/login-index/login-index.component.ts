@@ -16,11 +16,9 @@ export class LoginIndexComponent {
   user: UserSignup = AuthService.getEmptyUser();
 
   login(user: UserSignup) {
-    console.log('user:', user);
     this.authService.login(user.username, user.password).subscribe();
   }
   signup(user: UserSignup) {
-    console.log('user:', user);
     this.authService.signup(user).subscribe();
   }
 

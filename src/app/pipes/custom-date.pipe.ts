@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CustomDatePipe implements PipeTransform {
   transform(value: string): string {
-    console.log("value:", value)
     const date = new Date(value);
     const now = new Date();
 

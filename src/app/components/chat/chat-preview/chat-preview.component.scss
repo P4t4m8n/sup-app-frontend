@@ -1,6 +1,44 @@
+@import "../../../../styles.scss";
 li {
+  display: grid;
+  grid-template-columns: 2rem auto;
+  grid-template-rows: 50% 50%;
+  column-gap: 1.5rem;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: .5rem;
+  color: whitesmoke;
   .img-con {
+    grid-area: 1/1/-1/2;
     width: 2rem;
     height: 2rem;
+    background-color: rgb(37, 37, 37);
+    padding: 0.25rem;
+    border-radius: 100vw;
+  }
+  .info {
+    grid-area: 1/2/2/-1;
+    display: flex;
+    justify-content: space-between;
+    h2,
+    h3 {
+      font-size: 1rem;
+    }
+    h3 {
+      font-weight: 400;
+      font-size: 0.8rem;
+    }
+    h2 {
+      font-weight: 500;
+    }
+  }
+  .last-msg {
+    font-size: 0.9rem;
+    font-weight: 400;
+    grid-area: 2/2/-1/-1;
+    @include text-overflow-ellipsis;
+  }
+  &:hover {
+    background-color: rgb(97, 97, 97);
   }
 }

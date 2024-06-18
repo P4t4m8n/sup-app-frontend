@@ -1,0 +1,15 @@
+:host {
+  padding-inline: 1.5rem;
+  color: whitesmoke;
+  padding-block: 2rem;
+  border: 1px solid black;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  ul {
+    display: grid;
+    gap: 1rem;
+  }
+}

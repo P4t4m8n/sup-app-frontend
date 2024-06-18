@@ -4,5 +4,5 @@ export interface MessageModel {
   userId: string;
   text: string;
   createAt: string;
-  senderUsername: string;
+  senderUserName: string;
 }

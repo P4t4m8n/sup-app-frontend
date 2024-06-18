@@ -1,6 +1,4 @@
-* > {
-  box-sizing: border-box;
-}
+
 
 html,
 body {
@@ -33,8 +31,14 @@ li {
   margin: 0;
 }
 
-button{
+button {
   border: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+@mixin text-overflow-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

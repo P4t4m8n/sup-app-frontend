@@ -1,3 +1,4 @@
+<app-chat-filter />
 <ul>
-    <app-chat-preview *ngFor=" let chat of chats" [chat]="chat" />
+    <app-chat-preview *ngFor=" let chat of chats" [chat]="chat" (selectedChat)="selectedChat.emit($event)" />
 </ul>
