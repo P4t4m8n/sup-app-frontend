@@ -1,0 +1,15 @@
+@if(!chat){
+<h1>NO CHAT</h1>
+}
+@else {
+
+<div class="chat-container">
+  <div class="messages">
+    <div *ngFor="let message of messages()">
+      {{ message }}
+    </div>
+  </div>
+  <input [(ngModel)]="message" (keydown.enter)="sendMessage()" placeholder="Type a message..." />
+  <button (click)="sendMessage()">Send</button>
+</div>
+}

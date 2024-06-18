@@ -1,0 +1,12 @@
+<li>
+    <div class="img-con">
+        <svg-avatar />
+    </div>
+    <div class="info">
+        <h2>{{chat.users[1].username}}</h2>
+        <h3>{{chat.messages[chat.messages.length - 1].createAt|customDate}}</h3>
+    </div>
+
+    <h3 class="last-msg">{{chat.messages[chat.messages.length - 1].text}}</h3>
+
+</li>

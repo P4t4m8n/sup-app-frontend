@@ -4,5 +4,6 @@ import { UserModel } from './user';
 export interface ChatModel {
   _id?: string;
   users: UserModel[];
-  message: MessageModel[];
+  name: string;
+  messages: MessageModel[];
 }

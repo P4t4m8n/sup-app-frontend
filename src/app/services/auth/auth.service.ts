@@ -64,7 +64,6 @@ export class AuthService {
       })
       .pipe(
         tap((response) => {
-          console.log("response:", response)
           if (response.user) {
             this.user_.set(response.user);
           } else {

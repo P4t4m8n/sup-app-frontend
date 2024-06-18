@@ -1,6 +1,8 @@
 export interface MessageModel {
   _id?: string;
+  chatId: string;
   userId: string;
-  message: string;
-  createdAt: Date;
+  text: string;
+  createAt: string;
+  senderUsername: string;
 }
