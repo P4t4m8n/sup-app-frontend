@@ -14,7 +14,6 @@ import { ChatPreviewComponent } from './components/chat/chat-preview/chat-previe
 import { ChatListComponent } from './components/chat/chat-list/chat-list.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
-import { ChatListHeaderComponent } from './components/chat/chat-list-header/chat-list-header.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { AvatarSVG } from './components/svgs/avatar/avatar.component';
 import { ChatSVG } from './components/svgs/chat/chat.component';
@@ -23,6 +22,7 @@ import { SettingsSVG } from './components/svgs/settings/settings.component';
 import { ChatFilterComponent } from './components/chat/chat-filter/chat-filter.component';
 import { NewMsgSVG } from './components/svgs/new-msg/new-msg.component';
 import { FilterSVG } from './components/svgs/filter/filter.component';
+import { SendSvg } from './components/svgs/send-svg/send-svg.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { FilterSVG } from './components/svgs/filter/filter.component';
     ChatListComponent,
     HomeComponent,
     NavComponent,
-    ChatListHeaderComponent,
     CustomDatePipe,
     ChatFilterComponent,
   ],
@@ -53,6 +52,7 @@ import { FilterSVG } from './components/svgs/filter/filter.component';
     SettingsSVG,
     NewMsgSVG,
     FilterSVG,
+    SendSvg,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

@@ -1,7 +1,9 @@
+@import '../../../styles/variables.scss';
+
 :host {
   display: grid;
   height: 100%;
   grid-template-columns: 3.5rem 30% 1fr;
-  background-color: rgb(44, 44, 44);
+  background-color:$dark-grey;
 
 }

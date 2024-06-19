@@ -4,16 +4,26 @@
 @else {
 
 <div class="chat-container">
+  <header>
+    <div class="img-con">
+      <svg-avatar />
+    </div>
+    <h3>{{chat.users[1].username}}</h3>
+  </header>
   <div class="messages">
-    <div *ngFor="let message of chat.messages" [ngClass]="{'green': user.username === message.senderUserName}">
-      <p>{{message.senderUserName}}</p>
-      <p >
+    <div *ngFor="let message of chat.messages" class="message"
+      [ngClass]="{'green': user.username === message.senderUserName}">
+      <!-- <p class="name">{{message.senderUserName}}</p> -->
+      <p class="text">
         {{ message.text }}
       </p>
-      <p>{{message.createAt|customDate}}</p>
+      <p class="date">{{message.createAt|customDate}}</p>
     </div>
   </div>
-  <input [(ngModel)]="message" (keydown.enter)="sendMessage()" placeholder="Type a message..." />
-  <button (click)="sendMessage()">Send</button>
+  <div class="actions">
+
+    <input [(ngModel)]="message" (keydown.enter)="sendMessage()" placeholder="Type a message" />
+    <button (click)="sendMessage()"><svg-send/></button>
+  </div>
 </div>
 }

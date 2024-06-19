@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { ChatService } from '../../services/chat/chat.service';
 import { ChatModel } from '../../interface/chat';
+import { demoObj } from '../../services/dev.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   user_ = this.authService.user_();
   chats_ = this.chatService.chats_;
-  selectedChat: ChatModel | null = null;
+  selectedChat: ChatModel | null = demoObj;
 
   ngOnInit(): void {
     if (this.user_) {

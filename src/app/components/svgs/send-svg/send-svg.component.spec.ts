@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChatListHeaderComponent } from './chat-list-header.component';
+import { SendSvgComponent } from './send-svg.component';
 
-describe('ChatListHeaderComponent', () => {
-  let component: ChatListHeaderComponent;
-  let fixture: ComponentFixture<ChatListHeaderComponent>;
+describe('SendSvgComponent', () => {
+  let component: SendSvgComponent;
+  let fixture: ComponentFixture<SendSvgComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChatListHeaderComponent]
+      imports: [SendSvgComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ChatListHeaderComponent);
+    fixture = TestBed.createComponent(SendSvgComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
