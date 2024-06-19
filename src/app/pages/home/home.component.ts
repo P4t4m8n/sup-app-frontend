@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   user_ = this.authService.user_();
   chats_ = this.chatService.chats_;
-  selectedChat: ChatModel | null = demoObj;
+  selectedChat: ChatModel | null = null;
 
   ngOnInit(): void {
     if (this.user_) {
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectChat(chat: ChatModel): void {
-    console.log("chat:", chat)
+    console.log('chat:', chat);
     this.selectedChat = chat;
   }
 }

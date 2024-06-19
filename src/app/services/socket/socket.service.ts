@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
+import { MessageModel, MessagesToCreate } from '../../interface/message';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +12,11 @@ export class WebSocketService {
     this.socket = io('http://localhost:3000/');
   }
 
-  sendMessage(message: string) {
+  sendMessage(message: MessagesToCreate) {
     this.socket.emit('message', message);
   }
 
-  onMessage(callback: (message: string) => void) {
+  onMessage(callback: (message: MessageModel) => void) {
     this.socket.on('message', callback);
   }
-
 }

@@ -1,16 +1,22 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  ElementRef,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
+  SimpleChanges,
+  ViewChild,
   inject,
 } from '@angular/core';
-import { signal } from '@angular/core';
 import { WebSocketService } from '../../../services/socket/socket.service';
 import { ChatModel } from '../../../interface/chat';
-import { Subject, map } from 'rxjs';
+import { Subject } from 'rxjs';
 import { UserModel } from '../../../interface/user';
+import { MessageModel, MessagesToCreate } from '../../../interface/message';
+import { MessageService } from '../../../services/massage/message.service';
 
 @Component({
   selector: 'app-chat',
@@ -18,31 +24,53 @@ import { UserModel } from '../../../interface/user';
   styleUrl: './chat.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatComponent implements OnInit, OnDestroy {
-  message: string = '';
-  messages = signal<String[]>([]);
-
-  @Input() chat: ChatModel | null =null;
+export class ChatComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() chat: ChatModel | null = null;
   @Input() user: UserModel | null = null;
 
-  private webSocketService = inject(WebSocketService);
-  destroySubjects$ = new Subject<void>();
+  @ViewChild('messagesContainer') private messagesContainer:
+    | ElementRef
+    | undefined;
 
-  constructor() {}
+  private cdr = inject(ChangeDetectorRef);
+  private messageService = inject(MessageService);
+  private webSocketService = inject(WebSocketService);
+
+  private destroySubjects$ = new Subject<void>();
+
+  message: MessagesToCreate = this.messageService.getEmptyMessage();
 
   ngOnInit(): void {
-    console.log('chat:', this.chat);
-    this.webSocketService.onMessage((message: string) => {
-      this.messages.update((messages) => [...messages, message]);
+    this.webSocketService.onMessage((message: MessageModel) => {
+      const updatedMessages = [...this.chat!.messages, message];
+      if (!this.chat) return;
+      this.chat = { ...this.chat, messages: updatedMessages };
+      this.cdr.detectChanges();
+      this.scrollToBottom();
     });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 0);
+  }
+
   sendMessage(): void {
-    if (this.message.trim()) {
-      this.webSocketService.sendMessage(this.message);
-      this.message = '';
+    this.message.chatId = this.chat?._id || '';
+    this.message.userId = this.user?._id || '';
+    this.message.senderUserName = this.user?.username || '';
+    this.webSocketService.sendMessage(this.message);
+    this.message = this.messageService.getEmptyMessage();
+  }
+
+  scrollToBottom(): void {
+    if (this.messagesContainer) {
+      this.messagesContainer.nativeElement.scrollTop =
+        this.messagesContainer.nativeElement.scrollHeight;
     }
   }
+  
   ngOnDestroy(): void {
     this.destroySubjects$.next();
     this.destroySubjects$.complete();

@@ -23,6 +23,7 @@ import { ChatFilterComponent } from './components/chat/chat-filter/chat-filter.c
 import { NewMsgSVG } from './components/svgs/new-msg/new-msg.component';
 import { FilterSVG } from './components/svgs/filter/filter.component';
 import { SendSvg } from './components/svgs/send-svg/send-svg.component';
+import { LogoSVG } from './components/svgs/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { SendSvg } from './components/svgs/send-svg/send-svg.component';
     NewMsgSVG,
     FilterSVG,
     SendSvg,
+    LogoSVG,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

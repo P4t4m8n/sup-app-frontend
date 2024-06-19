@@ -1,5 +1,9 @@
 @if(!chat ||!user){
-<h1>NO CHAT</h1>
+  <div class="logo-con">
+    <svg-logo />
+  </div>
+
+
 }
 @else {
 
@@ -10,7 +14,7 @@
     </div>
     <h3>{{chat.users[1].username}}</h3>
   </header>
-  <div class="messages">
+  <div class="messages" #messagesContainer>
     <div *ngFor="let message of chat.messages" class="message"
       [ngClass]="{'green': user.username === message.senderUserName}">
       <!-- <p class="name">{{message.senderUserName}}</p> -->
@@ -22,8 +26,8 @@
   </div>
   <div class="actions">
 
-    <input [(ngModel)]="message" (keydown.enter)="sendMessage()" placeholder="Type a message" />
-    <button (click)="sendMessage()"><svg-send/></button>
+    <input [(ngModel)]="message.text" (keydown.enter)="sendMessage()" placeholder="Type a message" />
+    <button (click)="sendMessage()"><svg-send /></button>
   </div>
 </div>
 }
