@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectChat(chat: ChatModel): void {
-    console.log('chat:', chat);
     this.selectedChat = chat;
   }
 }

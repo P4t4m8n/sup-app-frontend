@@ -24,6 +24,10 @@ import { NewMsgSVG } from './components/svgs/new-msg/new-msg.component';
 import { FilterSVG } from './components/svgs/filter/filter.component';
 import { SendSvg } from './components/svgs/send-svg/send-svg.component';
 import { LogoSVG } from './components/svgs/logo/logo.component';
+import { GroupSVG } from './components/svgs/group/group.component';
+import { NewChatComponent } from './components/chat/new-chat/new-chat.component';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { AddFriendSVG } from './components/svgs/add-friend/add-friend.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import { LogoSVG } from './components/svgs/logo/logo.component';
     SignupComponent,
     LoginIndexComponent,
     ModelDirective,
+    ClickOutsideDirective,
     ChatComponent,
     ChatPreviewComponent,
     ChatListComponent,
@@ -39,6 +44,7 @@ import { LogoSVG } from './components/svgs/logo/logo.component';
     NavComponent,
     CustomDatePipe,
     ChatFilterComponent,
+    NewChatComponent,
   ],
 
   imports: [
@@ -55,6 +61,8 @@ import { LogoSVG } from './components/svgs/logo/logo.component';
     FilterSVG,
     SendSvg,
     LogoSVG,
+    GroupSVG,
+    AddFriendSVG,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

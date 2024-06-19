@@ -1,0 +1,30 @@
+<button (click)="toggleModel()">
+    <svg-new-msg />
+</button>
+
+@if (isOpen) {
+<section class="model" clickOutside>
+    @if(mode ==='addFriend'){
+    <button (click)="toggleMode('friendList')">
+        Back</button>
+    <form (submit)="onAddFriend(userNameInput.value); userNameInput.value=''; $event.preventDefault();">
+        <input #userNameInput type="text" placeholder="Add Friend" required />
+        <button type="submit">Add</button>
+    </form>
+    }
+    @else {
+    <button class="svg-text">
+        <svg-group />
+        <h3>Group</h3>
+    </button>
+    <button class="svg-text" (click)="toggleMode('addFriend')">
+        <svg-add-friend />
+        <h3>Add Friend</h3>
+        <div *ngFor="let friend of friendList() " >
+            <button>{{friend.userName}}</button>
+        </div>
+    </button>
+    }
+</section>
+
+}
