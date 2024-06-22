@@ -20,7 +20,6 @@ export class ModelDirective implements OnInit {
       this.onClick = (ev: MouseEvent) => {
      
         const isClickedInside = this.el.nativeElement.contains(ev.target);
-        console.log("isClickedInside:", isClickedInside)
         if (!isClickedInside) this.clickOutside.emit();
       };
     }, 0);

@@ -57,15 +57,12 @@ export class NewChatComponent implements OnInit {
   }
 
   toggleModel() {
-    console.log('toggleModel');
     this.isOpen = !this.isOpen;
   }
 
   onStartChat(friend: FriendModel): void {
-    console.log('friend:', friend);
     if (!this.user_) return;
     this.webSocketService.startChat(friend.friendId, (newChat) => {
-      console.log('newChat:', newChat.chat);
       this.selectedChat.emit(newChat.chat);
       this.cdr.markForCheck();
     });

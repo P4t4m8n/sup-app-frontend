@@ -17,7 +17,6 @@ export class ChatService {
 
   constructor() {
     this.webSocketService.onChat(({chat}) => {
-      console.log("newChat:", chat)
       this.chats_.set([...this.chats_(), chat]);
     });
   }

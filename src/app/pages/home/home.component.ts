@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     if (this.user_) {
       this.chatService.query(this.user_._id).subscribe();
-      console.log('user:', this.user_.username)
       this.username = this.user_.username
     }
   }

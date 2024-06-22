@@ -3,7 +3,6 @@ import { io, Socket } from 'socket.io-client';
 import { environment } from '../../../environments/environment';
 import { ChatModel } from '../../interface/chat';
 import { MessageModel } from '../../interface/message';
-import Cookies from 'js-cookie';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +12,7 @@ export class WebSocketService implements OnDestroy {
 
   constructor() {
     this.socket = io(environment.websocketUrl, {
-      withCredentials: true, // Ensure cookies are sent with the request
+      withCredentials: true, 
     });
 
     this.socket.on('connect', () => {
@@ -26,7 +25,6 @@ export class WebSocketService implements OnDestroy {
   }
 
   startChat(recipientId: string, callback: (data:{chat: ChatModel}) => void) {
-    console.log('startChat', recipientId);
     this.socket.emit('startChat', { recipientId });
     this.socket.once('chatStarted', callback);
   }

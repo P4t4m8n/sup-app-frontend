@@ -23,7 +23,7 @@ import { Subject } from 'rxjs';
   styleUrl: './chat-preview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatPreviewComponent implements OnInit, OnChanges, OnDestroy {
+export class ChatPreviewComponent implements OnInit, OnDestroy {
   @Input() chat!: ChatModel;
   @Input() username = '';
   @Output() selectedChat = new EventEmitter<ChatModel>();
@@ -51,7 +51,6 @@ export class ChatPreviewComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.webSocketService.onMessage((message: MessageModel) => {
-      console.log('message:', message);
       if (message.chatId === this.chat._id) {
         this.lastMessage = message;
         this.cdr.detectChanges();
@@ -59,9 +58,7 @@ export class ChatPreviewComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes:', changes);
-  }
+ 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
