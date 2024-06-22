@@ -1,14 +1,21 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
+  OnChanges,
+  OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
+  inject,
   input,
 } from '@angular/core';
 import { ChatModel } from '../../../interface/chat';
 import { MessageModel } from '../../../interface/message';
+import { WebSocketService } from '../../../services/socket/socket.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-chat-preview',
@@ -16,23 +23,47 @@ import { MessageModel } from '../../../interface/message';
   styleUrl: './chat-preview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatPreviewComponent implements OnInit {
+export class ChatPreviewComponent implements OnInit, OnChanges, OnDestroy {
   @Input() chat!: ChatModel;
   @Input() username = '';
   @Output() selectedChat = new EventEmitter<ChatModel>();
-  
-  lastMassage: MessageModel | null = null;
+
+  webSocketService = inject(WebSocketService);
+  cdr = inject(ChangeDetectorRef);
+
+  lastMessage: MessageModel | null = null;
   chatWith: string = '';
-  
+  private destroy$ = new Subject<void>();
+
   ngOnInit() {
-    console.log('username:', this.username);
-    console.log("chat:", this.chat.users[0].username);
     this.chatWith =
       this.chat.users[0].username === this.username
         ? this.chat.users[1].username
         : this.chat.users[0].username;
 
-        console.log('chatWith', this.chatWith);
+    // Initialize last message if chat has messages
+    if (this.chat.messages.length > 0) {
+      this.lastMessage = this.chat.messages[this.chat.messages.length - 1];
+    }
+
+    if (this.chat) {
+      this.webSocketService.joinRoom(this.chat._id!); // Ensure joining the room
+    }
+
+    this.webSocketService.onMessage((message: MessageModel) => {
+      console.log('message:', message);
+      if (message.chatId === this.chat._id) {
+        this.lastMessage = message;
+        this.cdr.detectChanges();
+      }
+    });
   }
-  
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('changes:', changes);
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

@@ -8,12 +8,12 @@
         <h2>{{chatWith}}</h2>
         }
         @if(chat.messages &&chat.messages.length>0 ){
-        <h3>{{chat.messages[chat.messages.length - 1].createAt|customDate}}</h3>
+        <h3>{{lastMessage?.createAt|customDate}}</h3>
         }
     </div>
     @if(chat.messages && chat.messages.length > 0 ){
 
-    <h3 class="last-msg">{{chat.messages[chat.messages.length - 1].message}}</h3>
+    <h3 class="last-msg">{{lastMessage?.message}}</h3>
     }
 
 </li>

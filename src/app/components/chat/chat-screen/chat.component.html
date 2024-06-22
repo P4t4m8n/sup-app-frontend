@@ -17,7 +17,6 @@
   <div class="messages" #messagesContainer>
     <div *ngFor="let message of chat.messages" class="message"
       [ngClass]="{'green': user.username === message.senderUserName}">
-      <!-- <p class="name">{{message.senderUserName}}</p> -->
       <p class="text">
         {{ message.message }}
       </p>

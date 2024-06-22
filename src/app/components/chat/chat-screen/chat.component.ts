@@ -45,7 +45,7 @@ export class ChatComponent implements OnInit, OnDestroy, OnChanges {
       if (!this.chat) return;
       this.chat.messages.push(message);
       this.cdr.markForCheck();
-      this.scrollToBottom();
+      setTimeout(() => this.scrollToBottom(), 0);
     });
 
     if (this.chat) {
@@ -53,18 +53,19 @@ export class ChatComponent implements OnInit, OnDestroy, OnChanges {
       this.webSocketService.fetchMessages(this.chat._id!, (messages) => {
         this.chat!.messages = messages;
         this.cdr.markForCheck();
-        this.scrollToBottom();
+        setTimeout(() => this.scrollToBottom(), 0);
       });
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+
     if (changes['chat'] && this.chat) {
       this.webSocketService.joinRoom(this.chat._id!);
       this.webSocketService.fetchMessages(this.chat._id!, (messages) => {
         this.chat!.messages = messages;
         this.cdr.markForCheck();
-        this.scrollToBottom();
+        setTimeout(() => this.scrollToBottom(), 0);
       });
     }
   }
