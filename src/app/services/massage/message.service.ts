@@ -9,7 +9,7 @@ export class MessageService {
 
   getEmptyMessage(): MessagesToCreate {
     return {
-      text: '',
+      message: '',
       userId: '',
       chatId: '',
       senderUserName: '',

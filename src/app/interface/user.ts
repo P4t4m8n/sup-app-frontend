@@ -1,5 +1,12 @@
-export interface UserModel {
+export interface UserModel extends userSmallModel {
   _id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+}
+
+export interface userSmallModel {
+  _id?: string;
   username: string;
 }
 export interface UserLogin {

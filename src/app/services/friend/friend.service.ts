@@ -18,7 +18,6 @@ export class FriendService {
   query(userId: string) {
     return from(this.http.get<FriendModel[]>(`${this.apiUrl}/${userId}`)).pipe(
       tap((friends) => {
-        console.log("friends:", friends)
         this.friends_.set(friends);
       }),
       retry(1),
@@ -27,7 +26,6 @@ export class FriendService {
   }
 
   create(friend: Partial<FriendModel>) {
-    console.log('friend:', friend);
     return this.http
       .post<{ friend: FriendModel }>(`${this.apiUrl}/`, { friend })
       .pipe(

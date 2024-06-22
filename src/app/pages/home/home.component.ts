@@ -16,10 +16,13 @@ export class HomeComponent implements OnInit {
   user_ = this.authService.user_();
   chats_ = this.chatService.chats_;
   selectedChat: ChatModel | null = null;
+  username = ''
 
   ngOnInit(): void {
     if (this.user_) {
       this.chatService.query(this.user_._id).subscribe();
+      console.log('user:', this.user_.username)
+      this.username = this.user_.username
     }
   }
 

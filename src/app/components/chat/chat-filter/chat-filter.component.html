@@ -1,7 +1,7 @@
 <div class="info">
     <h1>Chats</h1>
     <div class="actions">
-        <app-new-chat />
+        <app-new-chat (selectedChat)="selectedChat.emit($event)"/>
         <svg-filter />
     </div>
 

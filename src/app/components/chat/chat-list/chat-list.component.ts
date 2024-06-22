@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, input } from '@angular/core';
 import { ChatModel } from '../../../interface/chat';
 
 @Component({
@@ -9,6 +9,7 @@ import { ChatModel } from '../../../interface/chat';
 })
 export class ChatListComponent implements OnInit {
   @Input() chats!: ChatModel[];
+  @Input() username!: string;
   @Output() selectedChat = new EventEmitter<ChatModel>();
   ngOnInit() {
   }

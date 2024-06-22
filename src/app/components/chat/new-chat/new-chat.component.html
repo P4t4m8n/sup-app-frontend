@@ -3,9 +3,9 @@
 </button>
 
 @if (isOpen) {
-<section class="model" clickOutside>
+<section class="model" modal (clickOutside)="toggleModel()">
     @if(mode ==='addFriend'){
-    <button (click)="toggleMode('friendList')">
+    <button (click)="toggleMode($event,'friendList')">
         Back</button>
     <form (submit)="onAddFriend(userNameInput.value); userNameInput.value=''; $event.preventDefault();">
         <input #userNameInput type="text" placeholder="Add Friend" required />
@@ -17,13 +17,13 @@
         <svg-group />
         <h3>Group</h3>
     </button>
-    <button class="svg-text" (click)="toggleMode('addFriend')">
+    <button class="svg-text" (click)="toggleMode($event,'addFriend')">
         <svg-add-friend />
         <h3>Add Friend</h3>
-        <div *ngFor="let friend of friendList() " >
-            <button>{{friend.userName}}</button>
-        </div>
     </button>
+    <div *ngFor="let friend of friendList() ">
+        <button (click)="onStartChat(friend)">{{friend.userName}}</button>
+    </div>
     }
 </section>
 

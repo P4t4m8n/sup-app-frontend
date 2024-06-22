@@ -4,7 +4,7 @@ export interface MessageModel extends MessagesToCreate {
 }
 
 export interface MessagesToCreate {
-  text: string;
+  message: string;
   userId: string;
   updatedAt?: number | null;
   chatId: string;

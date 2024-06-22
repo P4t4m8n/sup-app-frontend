@@ -18,9 +18,21 @@ import { MessageModel } from '../../../interface/message';
 })
 export class ChatPreviewComponent implements OnInit {
   @Input() chat!: ChatModel;
+  @Input() username = '';
   @Output() selectedChat = new EventEmitter<ChatModel>();
-
+  
   lastMassage: MessageModel | null = null;
+  chatWith: string = '';
+  
+  ngOnInit() {
+    console.log('username:', this.username);
+    console.log("chat:", this.chat.users[0].username);
+    this.chatWith =
+      this.chat.users[0].username === this.username
+        ? this.chat.users[1].username
+        : this.chat.users[0].username;
 
-  ngOnInit() {}
+        console.log('chatWith', this.chatWith);
+  }
+  
 }

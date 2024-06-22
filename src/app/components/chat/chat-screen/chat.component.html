@@ -19,14 +19,14 @@
       [ngClass]="{'green': user.username === message.senderUserName}">
       <!-- <p class="name">{{message.senderUserName}}</p> -->
       <p class="text">
-        {{ message.text }}
+        {{ message.message }}
       </p>
       <p class="date">{{message.createAt|customDate}}</p>
     </div>
   </div>
   <div class="actions">
 
-    <input [(ngModel)]="message.text" (keydown.enter)="sendMessage()" placeholder="Type a message" />
+    <input [(ngModel)]="message.message" (keydown.enter)="sendMessage()" placeholder="Type a message" />
     <button (click)="sendMessage()"><svg-send /></button>
   </div>
 </div>

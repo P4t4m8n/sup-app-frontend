@@ -26,7 +26,6 @@ import { SendSvg } from './components/svgs/send-svg/send-svg.component';
 import { LogoSVG } from './components/svgs/logo/logo.component';
 import { GroupSVG } from './components/svgs/group/group.component';
 import { NewChatComponent } from './components/chat/new-chat/new-chat.component';
-import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { AddFriendSVG } from './components/svgs/add-friend/add-friend.component';
 
 @NgModule({
@@ -36,7 +35,6 @@ import { AddFriendSVG } from './components/svgs/add-friend/add-friend.component'
     SignupComponent,
     LoginIndexComponent,
     ModelDirective,
-    ClickOutsideDirective,
     ChatComponent,
     ChatPreviewComponent,
     ChatListComponent,

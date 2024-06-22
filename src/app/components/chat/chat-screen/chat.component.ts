@@ -21,7 +21,7 @@ import { MessageService } from '../../../services/massage/message.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrl: './chat.component.scss',
+  styleUrls: ['./chat.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatComponent implements OnInit, OnDestroy, OnChanges {
@@ -36,31 +36,52 @@ export class ChatComponent implements OnInit, OnDestroy, OnChanges {
   private messageService = inject(MessageService);
   private webSocketService = inject(WebSocketService);
 
-  private destroySubjects$ = new Subject<void>();
+  private destroy$ = new Subject<void>();
 
   message: MessagesToCreate = this.messageService.getEmptyMessage();
 
   ngOnInit(): void {
     this.webSocketService.onMessage((message: MessageModel) => {
-      const updatedMessages = [...this.chat!.messages, message];
       if (!this.chat) return;
-      this.chat = { ...this.chat, messages: updatedMessages };
-      this.cdr.detectChanges();
+      this.chat.messages.push(message);
+      this.cdr.markForCheck();
       this.scrollToBottom();
     });
+
+    if (this.chat) {
+      this.webSocketService.joinRoom(this.chat._id!);
+      this.webSocketService.fetchMessages(this.chat._id!, (messages) => {
+        this.chat!.messages = messages;
+        this.cdr.markForCheck();
+        this.scrollToBottom();
+      });
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    setTimeout(() => {
-      this.scrollToBottom();
-    }, 0);
+    if (changes['chat'] && this.chat) {
+      this.webSocketService.joinRoom(this.chat._id!);
+      this.webSocketService.fetchMessages(this.chat._id!, (messages) => {
+        this.chat!.messages = messages;
+        this.cdr.markForCheck();
+        this.scrollToBottom();
+      });
+    }
   }
 
   sendMessage(): void {
-    this.message.chatId = this.chat?._id || '';
-    this.message.userId = this.user?._id || '';
-    this.message.senderUserName = this.user?.username || '';
-    this.webSocketService.sendMessage(this.message);
+    if (!this.chat || !this.user) return;
+    const newMessage: MessagesToCreate = {
+      chatId: this.chat._id!,
+      userId: this.user._id,
+      message: this.message.message,
+      senderUserName: this.user.username,
+    };
+    this.webSocketService.sendMessage(
+      this.chat._id!,
+      newMessage.message,
+      newMessage.senderUserName
+    );
     this.message = this.messageService.getEmptyMessage();
   }
 
@@ -70,9 +91,9 @@ export class ChatComponent implements OnInit, OnDestroy, OnChanges {
         this.messagesContainer.nativeElement.scrollHeight;
     }
   }
-  
+
   ngOnDestroy(): void {
-    this.destroySubjects$.next();
-    this.destroySubjects$.complete();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
