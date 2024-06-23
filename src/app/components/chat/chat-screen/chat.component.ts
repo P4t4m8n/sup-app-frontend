@@ -77,6 +77,7 @@ export class ChatComponent implements OnInit, OnDestroy, OnChanges {
       userId: this.user._id,
       message: this.message.message,
       senderUserName: this.user.username,
+      status: 'sent',
     };
     this.webSocketService.sendMessage(
       this.chat._id!,

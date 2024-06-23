@@ -13,6 +13,7 @@ export class MessageService {
       userId: '',
       chatId: '',
       senderUserName: '',
+      status: 'sent',
     };
   }
 }

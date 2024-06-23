@@ -16,12 +16,29 @@
     }
   }
 
-  input {
-    width: 100%;
-    padding: 0.5rem;
-    background-color: $light-grey;
-    border-bottom: 1px solid $white;
-    border-radius: 0.2rem;
-    color: $white;
+  .search {
+    display: flex;
+    align-items: center;
+    border-radius: 0.25rem;
+    position: relative;
+    box-shadow: 0 1px 0 0 $soft-grey;
+    background-color: rgb(55, 55, 55);
+    .svg-con {
+      width: 0.8rem;
+      aspect-ratio: 1/1;
+      padding: 0.5rem 0 0.5rem 0.5rem;
+    }
+    input {
+      background-color: inherit;
+      width: calc(100% - 1rem);
+      padding: 0.5rem;
+      border-radius: 0.2rem;
+      color: $white;
+
+      &::placeholder {
+        opacity: 1;
+        color: $soft-grey;
+      }
+    }
   }
 }

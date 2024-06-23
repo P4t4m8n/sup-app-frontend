@@ -1,0 +1,15 @@
+@import "../../../../styles/variables.scss";
+
+:host {
+  display: inline-block;
+  width: inherit;
+  height: inherit;
+}
+svg {
+  width: inherit;
+  height: inherit;
+  transform: scaleX(-1);
+  fill: none;
+  stroke: $soft-grey;
+  stroke-width: 2;
+}

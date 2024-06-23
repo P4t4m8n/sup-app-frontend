@@ -1,19 +1,17 @@
 <li (click)="selectedChat.emit(chat)">
-    <div class="img-con">
-        <svg-avatar />
-    </div>
-    <div class="info">
-        @if(chat.users && chat.users.length > 1){
+  <img src={{chatWith.imgUrl}} />
+  <div class="info">
+    @if(chat.users && chat.users.length > 1){
 
-        <h2>{{chatWith}}</h2>
-        }
-        @if(chat.messages &&chat.messages.length>0 ){
-        <h3>{{lastMessage?.createAt|customDate}}</h3>
-        }
-    </div>
-    @if(chat.messages && chat.messages.length > 0 ){
-
-    <h3 class="last-msg">{{lastMessage?.message}}</h3>
+    <h2>{{chatWith.username}}</h2>
     }
+    @if(chat.messages &&chat.messages.length>0 ){
+    <h3>{{lastMessage?.createAt|customDate}}</h3>
+    }
+  </div>
+  @if(chat.messages && chat.messages.length > 0 ){
+
+  <h3 [ngClass]="{'bold':lastMessage?.status !== 'read'}" class="last-msg">{{lastMessage?.message}}</h3>
+  }
 
 </li>

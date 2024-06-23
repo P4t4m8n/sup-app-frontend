@@ -21,8 +21,8 @@ import { WebSocketService } from '../../../services/socket/socket.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewChatComponent implements OnInit {
-  isOpen = false;
-  mode: 'addFriend' | 'friendList' = 'friendList';
+  isOpen = true;
+  mode: 'addFriend' | 'friendList' = 'addFriend';
   @Output() selectedChat = new EventEmitter<ChatModel>();
 
   friendService = inject(FriendService);

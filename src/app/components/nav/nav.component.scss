@@ -1,7 +1,9 @@
+@import '../../../styles/variables.scss';
+
 :host {
   display: flex;
   flex-direction: column;
-  background-color: rgb(37, 37, 37);
+  background-color: $main-bg;
   width: 2.5rem;
   justify-content: space-between;
   padding-block: 1rem;

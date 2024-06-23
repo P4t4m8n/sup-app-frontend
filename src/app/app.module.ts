@@ -27,6 +27,8 @@ import { LogoSVG } from './components/svgs/logo/logo.component';
 import { GroupSVG } from './components/svgs/group/group.component';
 import { NewChatComponent } from './components/chat/new-chat/new-chat.component';
 import { AddFriendSVG } from './components/svgs/add-friend/add-friend.component';
+import { SearchSVG } from './components/svgs/search-svg/search-svg.component';
+import { BackSVG } from './components/svgs/back/back.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { AddFriendSVG } from './components/svgs/add-friend/add-friend.component'
     LogoSVG,
     GroupSVG,
     AddFriendSVG,
+    SearchSVG,
+    BackSVG,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

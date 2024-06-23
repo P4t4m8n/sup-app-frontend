@@ -9,12 +9,12 @@ li {
   padding: 0.5rem;
   border-radius: 0.5rem;
   color: $white;
-  .img-con {
+  img {
     grid-area: 1/1/-1/2;
-    width: 2rem;
-    height: 2rem;
-    background-color: $dark-grey;
-    padding: 0.25rem;
+    width: 3rem;
+    aspect-ratio: 1/1;
+    object-fit: fill;
+    background-color: $main-bg;
     border-radius: 100vw;
   }
   .info {
@@ -38,8 +38,13 @@ li {
     font-weight: 400;
     grid-area: 2/2/-1/-1;
     @include text-overflow-ellipsis;
+   
   }
   &:hover {
     background-color: $highlight-grey;
   }
+  .bold {
+    font-weight: bolder;
+  } 
+
 }

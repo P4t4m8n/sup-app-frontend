@@ -5,20 +5,111 @@
 
   .model {
     position: absolute;
-    background-color: $dark-grey;
+    background-color: $secondary-bg;
     min-height: 10rem;
-    width: 10rem;
-    padding: 0.5rem;
+    width: 16rem;
+    padding: 1.2rem;
     display: flex;
+    top: 125%;
     flex-direction: column;
-    gap: 1rem;
     border-radius: 0.5rem;
+    z-index: 5;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+    .friend-search {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .add-friend-header {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      h1 {
+        font-size: 1rem;
+      }
+      .back {
+        width: 2rem;
+        height: 2rem;
+        fill: $white;
+      }
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+
+    input {
+      margin-top: 0.25rem;
+      background-color: $main-bg;
+      padding: 0.4rem 0.5rem 0.4rem 0.5rem;
+      border-radius: 0.25rem;
+      width: 100%;
+      box-shadow: 0 1px 0 0 $soft-grey;
+      &:hover {
+        background-color: $hover-grey;
+      }
+      &:focus {
+        box-shadow: 0 1px 0 0 $light-green;
+      }
+    }
     .svg-text {
       color: $white;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 1.5rem;
+      h3 {
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+      padding-block: 0.5rem;
+      .svg-con {
+        box-sizing: border-box;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: rgba(255, 255, 255, 0.02) 0px 1px 3px 0px,
+          rgba(255, 255, 255, 0.15) 0px 0px 0px 1px;
+        border-radius: 100vw;
+        background-color: rgb(65, 65, 65);
+      }
+    }
+
+    button {
+      border-radius: 0.25rem;
+      &:hover {
+        background-color: $hover-grey;
+        cursor: pointer;
+      }
+    }
+
+    .friendList {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      h5 {
+        font-weight: 400;
+      }
+      .friend {
+        border-radius: 0.25rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: $white;
+        h4 {
+          font-weight: 500;
+          font-size: 0.9rem;
+        }
+        img {
+          width: 2.5rem;
+          aspect-ratio: 1/1;
+          border-radius: 100vh;
+        }
+      }
     }
   }
 }

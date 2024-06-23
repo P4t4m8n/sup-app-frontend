@@ -4,9 +4,21 @@
 
 @if (isOpen) {
 <section class="model" modal (clickOutside)="toggleModel()">
+
+    @if (mode === 'friendList')
+    {
+    <div class="friend-search">
+        <h1>New chat</h1>
+        <input type="search" placeholder="Search a name" />
+    </div>
+    }
     @if(mode ==='addFriend'){
-    <button (click)="toggleMode($event,'friendList')">
-        Back</button>
+    <div class="add-friend-header">
+        <button class="back" (click)="toggleMode($event,'friendList')">
+            <svg-back />
+        </button>
+        <h1>Add friend</h1>
+    </div>
     <form (submit)="onAddFriend(userNameInput.value); userNameInput.value=''; $event.preventDefault();">
         <input #userNameInput type="text" placeholder="Add Friend" required />
         <button type="submit">Add</button>
@@ -14,16 +26,28 @@
     }
     @else {
     <button class="svg-text">
-        <svg-group />
+        <div class="svg-con">
+            <svg-group />
+        </div>
         <h3>Group</h3>
     </button>
     <button class="svg-text" (click)="toggleMode($event,'addFriend')">
-        <svg-add-friend />
+        <div class="svg-con">
+            <svg-add-friend />
+        </div>
         <h3>Add Friend</h3>
     </button>
-    <div *ngFor="let friend of friendList() ">
-        <button (click)="onStartChat(friend)">{{friend.userName}}</button>
-    </div>
+    <ul class="friendList">
+        <h5>Friends</h5>
+        @for (friend of friendList() ; track friend._id) {
+        <button class="friend" (click)="onStartChat(friend)">
+            <img [src]="friend.imgUrl" />
+            <h4>
+                {{friend.userName}}
+            </h4>
+        </button>
+        }
+    </ul>
     }
 </section>
 

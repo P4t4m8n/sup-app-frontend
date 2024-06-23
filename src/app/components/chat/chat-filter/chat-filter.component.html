@@ -1,9 +1,15 @@
 <div class="info">
     <h1>Chats</h1>
     <div class="actions">
-        <app-new-chat (selectedChat)="selectedChat.emit($event)"/>
+        <app-new-chat (selectedChat)="selectedChat.emit($event)" />
         <svg-filter />
     </div>
 
 </div>
-<input type="search" placeholder="Search or start a new chat" />
+<div class="search">
+    <div class="svg-con">
+
+        <svg-search-svg />
+    </div>
+    <input type="search" placeholder="Search or start a new chat" />
+</div>

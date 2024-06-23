@@ -32,22 +32,28 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
   cdr = inject(ChangeDetectorRef);
 
   lastMessage: MessageModel | null = null;
-  chatWith: string = '';
+  chatWith: { username: string; imgUrl: string } = { username: '', imgUrl: '' };
   private destroy$ = new Subject<void>();
 
   ngOnInit() {
+    console.log(this.chat);
     this.chatWith =
       this.chat.users[0].username === this.username
-        ? this.chat.users[1].username
-        : this.chat.users[0].username;
+        ? {
+            username: this.chat.users[1].username,
+            imgUrl: this.chat.users[1].imgUrl,
+          }
+        : {
+            username: this.chat.users[0].username,
+            imgUrl: this.chat.users[0].imgUrl,
+          };
 
-    // Initialize last message if chat has messages
     if (this.chat.messages.length > 0) {
       this.lastMessage = this.chat.messages[this.chat.messages.length - 1];
     }
 
     if (this.chat) {
-      this.webSocketService.joinRoom(this.chat._id!); // Ensure joining the room
+      this.webSocketService.joinRoom(this.chat._id!);
     }
 
     this.webSocketService.onMessage((message: MessageModel) => {
@@ -58,7 +64,6 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
     });
   }
 
- 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

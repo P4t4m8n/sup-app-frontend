@@ -4,4 +4,5 @@ export interface FriendModel {
   friendId: string;
   status: 'pending' | 'accepted' | 'rejected';
   userName: string;
+  imgUrl: string;
 }

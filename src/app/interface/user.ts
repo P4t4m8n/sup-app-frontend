@@ -8,6 +8,7 @@ export interface UserModel extends userSmallModel {
 export interface userSmallModel {
   _id?: string;
   username: string;
+  imgUrl: string;
 }
 export interface UserLogin {
   username: string;

@@ -9,4 +9,7 @@ export interface MessagesToCreate {
   updatedAt?: number | null;
   chatId: string;
   senderUserName: string;
+  status: MessageStatus;
 }
+
+export type MessageStatus = "sent" | "delivered" | "read";
