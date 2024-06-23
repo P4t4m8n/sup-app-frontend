@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { catchError, from, retry, tap, throwError } from 'rxjs';
 import { FriendModel } from '../../interface/friend';
+import { UserSmallModel } from '../../interface/user';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class FriendService {
   query(userId: string) {
     return from(this.http.get<FriendModel[]>(`${this.apiUrl}/${userId}`)).pipe(
       tap((friends) => {
-        console.log("friends:", friends)
+        console.log('friends:', friends);
         this.friends_.set(friends);
       }),
       retry(1),
@@ -63,12 +64,20 @@ export class FriendService {
     );
   }
 
+  searchForFriends(userName: string) {
+    return from(
+      this.http.get<UserSmallModel[]>(
+        `http://localhost:3000/api/user/search/${userName}`
+      )
+    ).pipe(catchError(this._handleError));
+  }
+
   getEmptyFriend(): Partial<FriendModel> {
     return {
       userId: '',
       friendId: '',
       status: 'pending',
-      userName: '',
+      username: '',
     };
   }
 

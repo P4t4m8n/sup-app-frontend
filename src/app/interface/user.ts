@@ -1,11 +1,11 @@
-export interface UserModel extends userSmallModel {
+export interface UserModel extends UserSmallModel {
   _id: string;
   email: string;
   firstName: string;
   lastName: string;
 }
 
-export interface userSmallModel {
+export interface UserSmallModel {
   _id?: string;
   username: string;
   imgUrl: string;

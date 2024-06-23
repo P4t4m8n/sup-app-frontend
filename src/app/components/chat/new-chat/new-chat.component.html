@@ -19,10 +19,20 @@
         </button>
         <h1>Add friend</h1>
     </div>
-    <form (submit)="onAddFriend(userNameInput.value); userNameInput.value=''; $event.preventDefault();">
-        <input #userNameInput type="text" placeholder="Add Friend" required />
-        <button type="submit">Add</button>
-    </form>
+
+    <input (input)="searchForFriend($event)" type="text" placeholder="Add Friend" required />
+
+    <ul class="friendList" style="margin-top:1rem ;">
+        @for (friend of searchList ; track friend._id) {
+        <button class="friend" (click)="onAddFriend(friend)">
+            <img [src]="friend.imgUrl" />
+            <h4>
+                {{friend.username}}
+            </h4>
+        </button>
+        }
+    </ul>
+
     }
     @else {
     <button class="svg-text">
@@ -43,7 +53,7 @@
         <button class="friend" (click)="onStartChat(friend)">
             <img [src]="friend.imgUrl" />
             <h4>
-                {{friend.userName}}
+                {{friend.username}}
             </h4>
         </button>
         }

@@ -3,8 +3,10 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
   inject,
 } from '@angular/core';
 import { FriendService } from '../../../services/friend/friend.service';
@@ -13,14 +15,17 @@ import { ChatModel } from '../../../interface/chat';
 import { ChatService } from '../../../services/chat/chat.service';
 import { FriendModel } from '../../../interface/friend';
 import { WebSocketService } from '../../../services/socket/socket.service';
+import { UtilService } from '../../../services/util/util.service';
+import { tap } from 'rxjs';
+import { UserSmallModel } from '../../../interface/user';
 
 @Component({
   selector: 'app-new-chat',
   templateUrl: './new-chat.component.html',
   styleUrl: './new-chat.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewChatComponent implements OnInit {
+export class NewChatComponent implements OnInit, OnChanges {
   isOpen = true;
   mode: 'addFriend' | 'friendList' = 'addFriend';
   @Output() selectedChat = new EventEmitter<ChatModel>();
@@ -29,11 +34,14 @@ export class NewChatComponent implements OnInit {
   authService = inject(AuthService);
   chatService = inject(ChatService);
   webSocketService = inject(WebSocketService);
+  utilService = inject(UtilService);
 
   cdr = inject(ChangeDetectorRef);
 
   user_ = this.authService.user_();
   friendList = this.friendService.friends_;
+
+  searchList: UserSmallModel[] = [];
 
   ngOnInit(): void {
     if (this.user_) {
@@ -41,14 +49,34 @@ export class NewChatComponent implements OnInit {
     }
   }
 
-  onAddFriend(userName: string): void {
+  onAddFriend(userSmall: UserSmallModel): void {
     const friend = this.friendService.getEmptyFriend();
     if (!this.user_) return;
+    friend.friendId = userSmall._id;
     friend.userId = this.user_._id;
-    friend.userName = userName;
+    friend.username = userSmall.username;
 
     this.friendService.create(friend).subscribe();
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('changes:', changes);
+  }
+
+  searchForFriend = this.utilService.debounce((ev: Event) => {
+    const { value } = ev.target as HTMLInputElement;
+    console.log('target:', value);
+    if (!this.user_) return;
+    const list = this.friendService
+      .searchForFriends(value)
+      .pipe(
+        tap((list) => {
+          this.searchList = list;
+          this.cdr.markForCheck()
+        })
+      )
+      .subscribe();
+    console.log('list:', list);
+  }, 500);
 
   toggleMode(ev: MouseEvent, mode: 'addFriend' | 'friendList'): void {
     ev.stopImmediatePropagation();

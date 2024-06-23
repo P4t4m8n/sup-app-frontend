@@ -3,6 +3,6 @@ export interface FriendModel {
   userId: string;
   friendId: string;
   status: 'pending' | 'accepted' | 'rejected';
-  userName: string;
+  username: string;
   imgUrl: string;
 }
