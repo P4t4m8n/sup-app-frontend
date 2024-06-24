@@ -1,14 +1,14 @@
 @import "../../../../styles/mixins.scss";
 @import "../../../../styles/variables.scss";
 :host {
-  position: relative;
   height: calc(100vh - 4rem);
+  
 
   .logo-con {
     position: absolute;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 75%;
+    transform: translate(-150%, -50%);
     aspect-ratio: 1/1;
     width: 8rem;
   }
@@ -28,12 +28,14 @@
       display: flex;
       align-items: center;
       min-height: 4rem;
+      padding-left: 1rem;
       gap: 1rem;
       justify-items: center;
       background-color: $main-bg;
-      .img-con {
+      img {
         width: 2rem;
         height: 2rem;
+        border-radius: 100vh;
       }
     }
     .messages {

@@ -1,7 +1,7 @@
 @if(!chat ||!user){
-  <div class="logo-con">
-    <svg-logo />
-  </div>
+<div class="logo-con">
+  <svg-logo />
+</div>
 
 
 }
@@ -9,14 +9,11 @@
 
 <div class="chat-container">
   <header>
-    <div class="img-con">
-      <svg-avatar />
-    </div>
+    <img [src]="chat.users[1].imgUrl" alt="avatar" />
     <h3>{{chat.users[1].username}}</h3>
   </header>
   <div class="messages" #messagesContainer>
-    <div *ngFor="let message of chat.messages" class="message"
-      [ngClass]="{'green': user.username === message.senderUserName}">
+    <div *ngFor="let message of chat.messages" class="message" [ngClass]="{'green': user._id === message.userId}">
       <p class="text">
         {{ message.message }}
       </p>

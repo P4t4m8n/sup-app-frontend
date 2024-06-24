@@ -1,7 +1,6 @@
 @import "../../../../styles/variables.scss";
 
 :host {
-  position: relative;
 
   .model {
     position: absolute;
@@ -10,10 +9,11 @@
     width: 16rem;
     padding: 1.2rem;
     display: flex;
-    top: 125%;
+    top: 50%;
     flex-direction: column;
     border-radius: 0.5rem;
-    z-index: 5;
+    overflow: visible;
+    z-index: 500;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
     .friend-search {
@@ -80,6 +80,7 @@
     }
 
     button {
+      width: 100%;
       border-radius: 0.25rem;
       &:hover {
         background-color: $hover-grey;

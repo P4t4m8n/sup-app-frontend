@@ -9,14 +9,16 @@
   border-bottom-left-radius: 0.5rem;
   display: flex;
   flex-direction: column;
-  position: relative;
   gap: 1.5rem;
-  overflow: auto;
-  &::-webkit-scrollbar{
-    display: none;
-
-  }
+  position: relative;
+  height: calc(100vh - 4.2rem );
+  
   ul {
+    overflow: auto;
+    &::-webkit-scrollbar{
+      display: none;
+      
+    }
     display: grid;
     gap: 1rem;
   }

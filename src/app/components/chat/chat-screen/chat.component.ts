@@ -63,6 +63,7 @@ export class ChatComponent implements OnInit, OnDestroy, OnChanges {
     if (changes['chat'] && this.chat) {
       this.webSocketService.joinRoom(this.chat._id!);
       this.webSocketService.fetchMessages(this.chat._id!, (messages) => {
+        console.log("messages:", messages)
         this.chat!.messages = messages;
         this.cdr.markForCheck();
         setTimeout(() => this.scrollToBottom(), 0);
