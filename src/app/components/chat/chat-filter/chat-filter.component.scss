@@ -3,6 +3,8 @@
 :host {
   display: grid;
   gap: 1rem;
+  position: sticky;
+  top:0;
   .info {
     display: flex;
     justify-content: space-between;

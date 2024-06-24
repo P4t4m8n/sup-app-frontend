@@ -1,5 +1,23 @@
 <section modal (clickOutside)="onBack()">
-    <app-login (login)="login($event)" [user]="user" *ngIf="isLogin"></app-login>
-    <app-signup *ngIf="!isLogin" (signup)="signup($event)" [user]="user"></app-signup>
-    <button (click)="toggleLogin()">Toggle</button>
+    <div class="hero">
+        <svg-world />
+        <div class="over">
+            <div class="svg-con">
+
+                <svg-logo />
+            </div>
+            <h1>SupApp</h1>
+        </div>
+    </div>
+
+    @if (isLogin){
+    <app-login (login)="login($event)" [user]="user"></app-login>
+    }
+    @else {
+    <app-signup (signup)="signup($event)" [user]="user"></app-signup>
+    }
+    <div class="actions">
+        <button (click)="toggleLogin()">{{isLogin?"Not a user signUp":"Already a user? login"}}</button>
+        <button (click)="onSubmit()">{{ isLogin ? 'Login' : 'Signup' }}</button>
+    </div>
 </section>

@@ -1,9 +1,13 @@
 <form (ngSubmit)="onSignup()">
+    <h3>Username:</h3>
     <input [(ngModel)]="user.username" name="username" placeholder="Username">
+    <h3>Password:</h3>
     <input [(ngModel)]="user.password" name="password" type="password" placeholder="Password"
         autocomplete="current-password">
+    <h3>Email:</h3>
     <input [(ngModel)]="user.email" name="email" placeholder="Email">
+    <h3>First Name:</h3>
     <input [(ngModel)]="user.firstName" name="firstName" placeholder="First name">
+    <h3>Last Name:</h3>
     <input [(ngModel)]="user.lastName" name="lastName" placeholder="Last name">
-    <button type="submit">Signup</button>
 </form>

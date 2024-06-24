@@ -11,14 +11,16 @@ import { UserSignup } from '../../interface/user';
 })
 export class LoginIndexComponent {
   router = inject(Router);
-  isLogin = true;
+  isLogin = false;
   authService = inject(AuthService);
   user: UserSignup = AuthService.getEmptyUser();
 
   login(user: UserSignup) {
+    console.log("user:", user)
     this.authService.login(user.username, user.password).subscribe();
   }
   signup(user: UserSignup) {
+    console.log("user:", user)
     this.authService.signup(user).subscribe();
   }
 
@@ -29,4 +31,12 @@ export class LoginIndexComponent {
   toggleLogin = () => {
     this.isLogin = !this.isLogin;
   };
+
+  onSubmit() {
+    if (this.isLogin) {
+      this.login(this.user);
+    } else {
+      this.signup(this.user);
+    }
+  }
 }

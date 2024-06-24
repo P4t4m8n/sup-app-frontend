@@ -9,7 +9,13 @@
   border-bottom-left-radius: 0.5rem;
   display: flex;
   flex-direction: column;
+  position: relative;
   gap: 1.5rem;
+  overflow: auto;
+  &::-webkit-scrollbar{
+    display: none;
+
+  }
   ul {
     display: grid;
     gap: 1rem;

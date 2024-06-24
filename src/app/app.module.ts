@@ -29,6 +29,7 @@ import { NewChatComponent } from './components/chat/new-chat/new-chat.component'
 import { AddFriendSVG } from './components/svgs/add-friend/add-friend.component';
 import { SearchSVG } from './components/svgs/search-svg/search-svg.component';
 import { BackSVG } from './components/svgs/back/back.component';
+import { WorldSVG } from './coponents/svgs/world/world.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { BackSVG } from './components/svgs/back/back.component';
     AddFriendSVG,
     SearchSVG,
     BackSVG,
+    WorldSVG,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

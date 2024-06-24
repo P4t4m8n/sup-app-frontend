@@ -1,8 +1,6 @@
 <app-chat-filter (selectedChat)="selectedChat.emit($event)" />
 <ul>
-
     @for(chat of chats; track chat._id){
-
     <app-chat-preview [chat]="chat" (selectedChat)="selectedChat.emit($event)" [username]="username" />
     }
 </ul>

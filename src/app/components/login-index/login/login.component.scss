@@ -1,6 +1,7 @@
+@import "../../../../styles/variables.scss";
+
 form {
   min-height: 20rem;
-  background-color: white;
   border-radius: 1rem;
   display: flex;
   gap: 0.5rem;
@@ -9,11 +10,15 @@ form {
     padding-top: 1rem;
     font-size: 1rem;
     font-weight: 400;
+    color: $text-color;
+    padding-left: 1rem;
   }
   input {
-    background-color: gainsboro;
+    background-color: $text-color;
     border-radius: 1rem;
     padding-inline: 1rem;
     min-height: 2rem;
   }
+
+ 
 }

@@ -23,10 +23,10 @@ import { UserSmallModel } from '../../../interface/user';
   selector: 'app-new-chat',
   templateUrl: './new-chat.component.html',
   styleUrl: './new-chat.component.scss',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewChatComponent implements OnInit, OnChanges {
-  isOpen = true;
+  isOpen = false;
   mode: 'addFriend' | 'friendList' = 'addFriend';
   @Output() selectedChat = new EventEmitter<ChatModel>();
 
@@ -64,7 +64,6 @@ export class NewChatComponent implements OnInit, OnChanges {
 
   searchForFriend = this.utilService.debounce((ev: Event) => {
     const { value } = ev.target as HTMLInputElement;
-    console.log('target:', value);
     if (!this.user_) return;
     const list = this.friendService
       .searchForFriends(value)

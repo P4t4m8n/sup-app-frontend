@@ -1,6 +1,7 @@
 @import '../../../styles/variables.scss';
 
 :host {
+  // box-sizing: border-box;
   display: flex;
   flex-direction: column;
   background-color: $main-bg;
@@ -8,6 +9,7 @@
   justify-content: space-between;
   padding-block: 1rem;
   padding-inline: 0.5rem;
+ 
   button{
     width: 2rem;
     height: 2rem;
