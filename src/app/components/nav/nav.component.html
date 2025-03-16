@@ -3,6 +3,23 @@
     <button><svg-chat /></button>
 </div>
 <div class="profile">
-    <button><svg-settings /></button>
-    <button><svg-avatar /></button>
+    <button (click)="onUserModelToggle()"><svg-settings /></button>
+    @if(user?.imgUrl){
+    <img [src]="user?.imgUrl" alt="avatar" />
+    }
+    @else{
+
+    <svg-avatar />
+    }
 </div>
+
+@if (isUserModelOpen){
+<div modal (clickOutside)="onUserModelToggle()" class="modal">
+
+    <img [src]="user?.imgUrl" alt="avatar" />
+    <h4>{{user?.username}}</h4>
+    <h3>{{user?.firstName}} {{user?.lastName}}</h3>
+    <h3>{{user?.email}}</h3>
+    <button (click)="onLogout()">Logout</button>
+</div>
+}

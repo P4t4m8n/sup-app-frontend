@@ -1,4 +1,5 @@
-@import '../../../styles/variables.scss';
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
 
 :host {
   // box-sizing: border-box;
@@ -9,15 +10,52 @@
   justify-content: space-between;
   padding-block: 1rem;
   padding-inline: 0.5rem;
- 
-  button{
+  position: relative;
+
+  button {
     width: 2rem;
     height: 2rem;
-   
   }
-  div{
+  div {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .profile {
+    img {
+      padding-top: 0.25rem;
+      width: 1.3rem;
+      aspect-ratio: 1/1;
+    }
+  }
+
+  .modal {
+    z-index: 5;
+    position: absolute;
+    bottom: 1.5%;
+    left: 20%;
+    background-color: $secondary-bg;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    height: 15rem;
+    display: grid;
+    gap: 1rem;
+    color: $white;
+    h3,
+    h4 {
+      font-weight: 400;
+    }
+    button {
+      @include button-green;
+      box-sizing: border-box;
+      min-height:3rem;
+
+    }
+    img {
+      width: 3rem;
+      aspect-ratio: 1/1;
+    }
   }
 }

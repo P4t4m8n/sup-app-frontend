@@ -48,6 +48,7 @@ export class AuthService {
   }
 
   logout() {
+    console.log('logout');
     return this.http
       .post(`${this.apiUrl}/logout`, {}, { withCredentials: true })
       .pipe(

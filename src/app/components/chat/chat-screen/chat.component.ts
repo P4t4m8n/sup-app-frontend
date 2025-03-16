@@ -43,6 +43,7 @@ export class ChatComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     this.webSocketService.onMessage((message: MessageModel) => {
       if (!this.chat) return;
+      if (message.userId !== this.user?._id) message.status = 'read';
       this.chat.messages.push(message);
       this.cdr.markForCheck();
       setTimeout(() => this.scrollToBottom(), 0);
@@ -59,11 +60,10 @@ export class ChatComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
     if (changes['chat'] && this.chat) {
       this.webSocketService.joinRoom(this.chat._id!);
       this.webSocketService.fetchMessages(this.chat._id!, (messages) => {
-        console.log("messages:", messages)
+        console.log('messages:', messages);
         this.chat!.messages = messages;
         this.cdr.markForCheck();
         setTimeout(() => this.scrollToBottom(), 0);
